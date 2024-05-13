@@ -1,5 +1,5 @@
 https://lucid.app/lucidchart/38e32648-0336-48fe-95b8-4e7340d20782/edit?invitationId=inv_984ec529-6d0f-405d-900b-e77c78c352bd&page=0_0# flowchart
-https://drive.google.com/file/d/1glAUk_dBabOVElY2eu7GHzSAlLGR3Sox/view?usp=sharing draw.io
+https://drive.google.com/file/d/1glAUk_dBabOVElY2eu7GHzSAlLGR3Sox/view?usp=sharing draw.io patiktukai ir coment one to many 
 
 https://www.figma.com/file/Z3cjZzQYfKxmZt9Paq2F22/Untitled?type=design&node-id=0-1&mode=design&t=lcoyjP5SzG9PxVoW-0
 figmos +- kaip turetu atrodyti priminis varijantas
