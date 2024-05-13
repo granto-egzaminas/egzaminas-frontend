@@ -1,3 +1,6 @@
+https://www.figma.com/file/Z3cjZzQYfKxmZt9Paq2F22/Untitled?type=design&node-id=0-1&mode=design&t=lcoyjP5SzG9PxVoW-0
+figmos +- kaip turetu atrodyti priminis varijantas
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
