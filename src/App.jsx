@@ -1,13 +1,14 @@
 import "./App.css";
-
+import Component from "./Components/ExampleComponent1/Component";
+import Component2 from "./Components/ExampleComponent2/Component2";
 //proxy srv port 5000
 
 function App() {
   return (
-    <div className="App">
-      <p>krabas </p>
-      <div></div>
-    </div>
+    <>
+      <Component />
+      <Component2 />
+    </>
   );
 }
 
