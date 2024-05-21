@@ -1,13 +1,24 @@
 import "./App.css";
-import Component from "./Components/ExampleComponent1/Component";
-import Component2 from "./Components/ExampleComponent2/Component2";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import RegisterPage from "./Components/Register/RegisterPage";
+import LoginPage from "./Components/Login/LoginPage";
+
 //proxy srv port 5000
 
 function App() {
   return (
     <>
-      <Component />
-      <Component2 />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
