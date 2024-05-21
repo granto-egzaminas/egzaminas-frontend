@@ -1,4 +1,18 @@
+
 import React, { useEffect, useState } from 'react'
+
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import RegisterPage from "./Components/Register/RegisterPage";
+import LoginPage from "./Components/Login/LoginPage";
+
+//proxy srv port 5000
+
 
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
@@ -10,12 +24,24 @@ const App = () => {
     localStorage.setItem('current_theme',theme)
   },[theme])
   return (
+
     <div className={`container ${theme} `}>
       <Header theme={theme} setTheme={setTheme}/>
       <Body/>
       <Footer/>
       </div>
   )
+
+    <>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Router>
+    </>
+  );
+
 }
 
 export default App
