@@ -20,16 +20,10 @@ function LoginPage() {
     navigate("/");
   };
 
-
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-
       const response = await fetch("http://localhost:5000/api/users/login", {
-
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +32,6 @@ function LoginPage() {
         body: JSON.stringify({ username, password }),
 
         body: JSON.stringify({ email, password }),
-
       });
 
       if (!response.ok) {
@@ -50,7 +43,6 @@ function LoginPage() {
       if (!user) {
         throw new Error("User data is missing in response");
       }
-
 
       // Store token for future requests
       localStorage.setItem("token", token);
@@ -73,17 +65,10 @@ function LoginPage() {
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin} className={styles.loginForm}>
         <input
-
-          type="text"
-          placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-
         />
         <input
           type="password"
@@ -96,8 +81,6 @@ function LoginPage() {
       <button onClick={handleBackToRegister}>Register an account</button>
 
       <button onClick={handleBackToHome}>Home</button>
-
-
     </div>
   );
 }
