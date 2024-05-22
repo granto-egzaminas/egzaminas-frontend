@@ -2,8 +2,8 @@
     padding: 4rem 4rem;
 }
 .footer{
-    background-color: white;
-    /* color: black; */
+  
+    color: white;
 }
 .sb_footer{
     display: flex;
@@ -25,7 +25,7 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    /* color:black; */
+    
 }
 a{
     color: rgb(255, 103, 103);
