@@ -1,4 +1,10 @@
-.body-div{
-    height: 700px;
-    background-color: #6363d5 ;
+.adsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

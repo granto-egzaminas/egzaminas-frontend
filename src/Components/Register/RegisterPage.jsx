@@ -13,6 +13,12 @@ function RegisterPage() {
     navigate("/login");
   };
 
+  const handleBackToHome = () => {
+    navigate("/");
+  };
+
+
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -37,6 +43,42 @@ function RegisterPage() {
   };
 
   return (
+
+    <div className={styles.registerContainer}>
+      <h2>Register Form</h2>
+      {error && <p>{error}</p>}
+      <div>
+        <form className={styles.registerForm} onClick={handleRegister}>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></input>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
+          <button className={styles.registerBtn} type="submit">
+            Create
+          </button>
+        </form>
+      </div>
+      <button type="button" onClick={handleBackToLogin}>
+        Back to Login
+      </button>
+      <button type="button" onClick={handleBackToHome}>
+        Home
+      </button>
+
     <div>
       <h2>Register Form</h2>
       {error && <p>{error}</p>}
@@ -76,6 +118,7 @@ function RegisterPage() {
           Back to Login
         </button>
       </div>
+
     </div>
   );
 }
