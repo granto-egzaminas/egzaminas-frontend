@@ -20,6 +20,7 @@ const Header = ({theme,setTheme}) => {
             <li>Fav</li>
             <li>Likes</li>
             <li>Mano Skelbimai</li>
+            <li>Pridėti skelbimą</li>
         </ul>
         <div className='search-box'>
             <input type="text" placeholder='search' />

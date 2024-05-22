@@ -24,7 +24,7 @@ const App = () => {
     localStorage.setItem('current_theme',theme)
   },[theme])
   return (
-
+<>
     <div className={`container ${theme} `}>
       <Header theme={theme} setTheme={setTheme}/>
       <Body/>
@@ -40,8 +40,9 @@ const App = () => {
         </Routes>
       </Router>
     </>
+    </>
   );
 
 }
 
-export default App
+export default App;
