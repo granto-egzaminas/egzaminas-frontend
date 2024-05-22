@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Header = ({ theme, setTheme }) => {
   const navigate = useNavigate();
   return (
+
     <div className="navbar">
       <img src={logo_dark} alt="logo" className="logo" />
       <ul>
@@ -55,5 +56,26 @@ const Header = ({ theme, setTheme }) => {
     Login
   </button>
 </div>;
+
+    <div className='navbar'>
+        <img src={theme=== "light"? logo_light: logo_dark} alt="logo" className='logo'/>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Fav</li>
+            <li>Likes</li>
+            <li>Mano Skelbimai</li>
+            <li>Pridėti skelbimą</li>
+        </ul>
+        <div className='search-box'>
+            <input type="text" placeholder='search' />
+            <img src={theme ==="light" ? search_icon_light :  search_icon_dark} alt="" />
+        </div>
+        <img onClick={()=>{toggleTheme()}} src={theme=== 'light'? toogle_light: toogle_dark} alt="" className='toggle-icon' />
+        <button className='LoginBtn' type={'submit'} >Login</button>
+        </div>
+  )
+}
+
 
 export default Header;
