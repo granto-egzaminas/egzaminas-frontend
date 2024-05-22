@@ -4,7 +4,7 @@ import styles from "./LoginPage.module.css";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -15,12 +15,12 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
@@ -32,6 +32,8 @@ function LoginPage() {
       if (!user) {
         throw new Error("User data is missing in response");
       }
+      // Store token for future requests
+      localStorage.setItem("token", token);
       // navigation based on role
       if (user.role === "admin") {
         navigate("/dashboard");
@@ -50,10 +52,10 @@ function LoginPage() {
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin} className={styles.loginForm}>
         <input
-          type="text"
-          placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
