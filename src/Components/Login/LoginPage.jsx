@@ -47,7 +47,6 @@ function LoginPage() {
 
       // Store user for future use (optional)
       localStorage.setItem("user", JSON.stringify(user));
-      console.log("User stored in local storage:", user);
       // navigation based on role
       if (user.role === "admin") {
         navigate("/dashboard");
