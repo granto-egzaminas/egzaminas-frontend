@@ -1,11 +1,11 @@
+/** @format */
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 
 function LoginPage() {
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
 
   const [email, setEmail] = useState("");
 
@@ -29,8 +29,6 @@ function LoginPage() {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({ username, password }),
-
         body: JSON.stringify({ email, password }),
       });
 
@@ -47,6 +45,9 @@ function LoginPage() {
       // Store token for future requests
       localStorage.setItem("token", token);
 
+      // Store user for future use (optional)
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log("User stored in local storage:", user);
       // navigation based on role
       if (user.role === "admin") {
         navigate("/dashboard");
