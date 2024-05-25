@@ -43,7 +43,9 @@ const AdsList = () => {
             <img src={ad.image} alt={ad.description} />
             <p>Price: {ad.price}</p>
             <p>Description: {ad.description}</p>
-            <p>Category: {ad.category_id}</p>
+            <p>Category: {ad.category_id.name}</p>
+            <p>Likes: {ad.like_ids.length}</p>
+            <p>Comments: {ad.comment_ids.length}</p>
           </li>
         ))}
       </ul>
