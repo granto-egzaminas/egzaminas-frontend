@@ -2,11 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import "@mantine/core/styles.css"; // Import Mantine styles
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <MantineProvider withGlobalStyles withNormalizeCSS>
-    <App />
-  </MantineProvider>,
+  <>
+    <ColorSchemeScript defaultColorScheme="auto" />
+    <MantineProvider
+      defaultColorScheme="dark"
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <App />
+    </MantineProvider>
+  </>,
 );

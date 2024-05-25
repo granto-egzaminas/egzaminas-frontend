@@ -1,32 +1,52 @@
-import React from "react";
-import { Card, Image, Text, Badge, Group } from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 
-const AdCard = ({ ad, userId }) => {
+import {
+  AiFillDollarCircle,
+  AiFillLike,
+  AiOutlineComment,
+} from "react-icons/ai";
+
+function AdCard({ ad }) {
   return (
-    <Card shadow="sm" padding="lg">
+    <Card
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      style={{ height: "350px", width: "250px" }}
+    >
       <Card.Section>
-        <Image src={ad.image} alt={ad.description} />
+        <Image
+          src={ad.image}
+          alt="<ad_picture_missing>"
+          height={150}
+          width={150}
+          style={{ objectFit: "cover" }}
+        />
       </Card.Section>
-      <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
-        <Text weight={500}>Price: {ad.price}</Text>
-        <Badge color="pink" variant="light">
-          {ad.category_id.name}
-        </Badge>
+
+      <Group justify="space-between" mt="md" mb="xs">
+        <Text fw={500}>
+          <AiFillDollarCircle /> {ad.price} &#8364;
+        </Text>
+        <Badge color="pink">{ad.category_id.name}</Badge>
       </Group>
-      <Text size="sm" style={{ lineHeight: 1.5 }}>
+
+      <Text size="sm" c="dimmed">
         {ad.description}
       </Text>
-      <div className="likeContainer">
-        <Text>{ad.like_ids.length} likes</Text>
-        {ad.like_ids.some((like) => like.user_id === userId) ? (
-          <div className="likedLike likeIcon" /> // full square
-        ) : (
-          <div className="unlikedLike likeIcon" /> //empty square
-        )}
-      </div>
-      <Text>{ad.comment_ids.length} comments</Text>
+
+      <Button color="blue" fullWidth mt="md" radius="md" mb="sm">
+        Favorite
+      </Button>
+      <Text>
+        {ad.like_ids.length} <AiFillLike />
+      </Text>
+      <Text>
+        {ad.comment_ids.length} <AiOutlineComment />
+      </Text>
     </Card>
   );
-};
+}
 
 export default AdCard;

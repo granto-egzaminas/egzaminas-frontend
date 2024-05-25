@@ -8,7 +8,7 @@ import LoginPage from "./Components/Login/LoginPage";
 
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import Body from "./Components/Body/Body";
+import AdList from "./Components/AdList/AdList";
 import CreateAd from "./Components/AdAdd/CreateAdd";
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
           element={
             <>
               <Header />
-              <Body />
+              <AdList />
               <Footer />
             </>
           }

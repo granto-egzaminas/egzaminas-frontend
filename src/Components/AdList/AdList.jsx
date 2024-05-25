@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
-import "./Body.css";
+import { Container, Title, Text } from "@mantine/core";
+import styles from "./AdList.module.css";
 
 const AdsList = () => {
   const [ads, setAds] = useState([]);
@@ -29,9 +30,8 @@ const AdsList = () => {
 
     fetchAds();
   }, []);
-
   if (error) {
-    return <div>Error: {error}</div>;
+    return <Text color="red">Error: {error}</Text>;
   }
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -39,18 +39,16 @@ const AdsList = () => {
   console.log(userId);
 
   return (
-    <div className="adsContainer">
-      <div>
-        <h1>Ads List</h1>
-      </div>
-      <ul className="ads">
+    <Container>
+      <Title align="center">All ads</Title>
+      <div className={styles.adsList}>
         {ads.map((ad) => (
-          <li key={ad._id}>
+          <div key={ad._id} className={styles.adCardWrapper}>
             <AdCard ad={ad} userId={userId} />
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </Container>
   );
 };
 
