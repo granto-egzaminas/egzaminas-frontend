@@ -1,11 +1,6 @@
 import React from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterPage from "./Components/Register/RegisterPage";
 import LoginPage from "./Components/Login/LoginPage";
 
@@ -14,6 +9,7 @@ import LoginPage from "./Components/Login/LoginPage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Body from "./Components/Body/Body";
+import CreateAd from "./Components/AdAdd/CreateAdd";
 
 const App = () => {
   return (
@@ -21,6 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/createAd" element={<CreateAd />} />
         <Route
           path="*"
           element={
