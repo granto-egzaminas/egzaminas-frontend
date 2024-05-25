@@ -5,3 +5,22 @@
   width: 100%;
   padding: 15px 7%;
 }
+
+.likeContainer {
+  display: flex;
+}
+
+.likeIcon {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+}
+
+.likedLike {
+  background-color: lightskyblue;
+  border: 2px solid lightskyblue;
+}
+
+.unlikedLike {
+  border: 2px solid lightskyblue;
+}

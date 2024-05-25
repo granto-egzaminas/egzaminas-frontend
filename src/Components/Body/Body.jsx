@@ -32,6 +32,10 @@ const AdsList = () => {
     return <div>Error: {error}</div>;
   }
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user._id;
+  console.log(userId);
+
   return (
     <div className="adsContainer ">
       <div>
@@ -44,8 +48,15 @@ const AdsList = () => {
             <p>Price: {ad.price}</p>
             <p>Description: {ad.description}</p>
             <p>Category: {ad.category_id.name}</p>
-            <p>Likes: {ad.like_ids.length}</p>
-            <p>Comments: {ad.comment_ids.length}</p>
+            <div className="likeContainer">
+              <p>{ad.like_ids.length} likes</p>
+              {ad.like_ids.some((like) => like.user_id === userId) ? (
+                <div className="likedLike likeIcon" /> // full square
+              ) : (
+                <div className="unlikedLike likeIcon" /> //empty square
+              )}
+            </div>
+            <p>{ad.comment_ids.length} comments</p>
           </li>
         ))}
       </ul>
