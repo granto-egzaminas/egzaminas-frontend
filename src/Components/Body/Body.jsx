@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import AdCard from "../Card/AdCard";
 import "./Body.css";
+
 const AdsList = () => {
   const [ads, setAds] = useState([]);
   const [error, setError] = useState(null);
@@ -37,26 +39,14 @@ const AdsList = () => {
   console.log(userId);
 
   return (
-    <div className="adsContainer ">
+    <div className="adsContainer">
       <div>
         <h1>Ads List</h1>
       </div>
-      <ul className="ads ">
+      <ul className="ads">
         {ads.map((ad) => (
           <li key={ad._id}>
-            <img src={ad.image} alt={ad.description} />
-            <p>Price: {ad.price}</p>
-            <p>Description: {ad.description}</p>
-            <p>Category: {ad.category_id.name}</p>
-            <div className="likeContainer">
-              <p>{ad.like_ids.length} likes</p>
-              {ad.like_ids.some((like) => like.user_id === userId) ? (
-                <div className="likedLike likeIcon" /> // full square
-              ) : (
-                <div className="unlikedLike likeIcon" /> //empty square
-              )}
-            </div>
-            <p>{ad.comment_ids.length} comments</p>
+            <AdCard ad={ad} userId={userId} />
           </li>
         ))}
       </ul>

@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
@@ -42,12 +40,10 @@ function LoginPage() {
         throw new Error("User data is missing in response");
       }
 
-      // Store token for future requests
       localStorage.setItem("token", token);
 
-      // Store user for future use (optional)
       localStorage.setItem("user", JSON.stringify(user));
-      // navigation based on role
+
       if (user.role === "admin") {
         navigate("/dashboard");
       } else {
