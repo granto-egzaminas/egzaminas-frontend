@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
-import { Container, Title, Text } from "@mantine/core";
+import { Container, Title, Divider } from "@mantine/core";
 import styles from "./AdList.module.css";
 
 const AdsList = () => {
@@ -43,6 +43,7 @@ const AdsList = () => {
           </div>
         ))}
       </div>
+      <Divider />
     </Container>
   );
 };

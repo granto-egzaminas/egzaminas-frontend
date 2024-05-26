@@ -10,6 +10,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import AdList from "./Components/AdList/AdList";
 import CreateAd from "./Components/AdAdd/CreateAdd";
+import CreateCategory from "./Components/CategoryAdd/CreateCategory";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createAd" element={<CreateAd />} />
+        <Route path="/createCategory" element={<CreateCategory />} />
         <Route
           path="*"
           element={
