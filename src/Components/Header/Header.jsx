@@ -5,14 +5,10 @@ import {
   UnstyledButton,
   Text,
   SimpleGrid,
-  Anchor,
   Divider,
   Center,
   Box,
   Burger,
-  Drawer,
-  Collapse,
-  ScrollArea,
   rem,
   useMantineTheme,
 } from "@mantine/core";
@@ -138,7 +134,7 @@ const Header = ({ user }) => {
                   <a
                     href=""
                     className={classes.link}
-                    onClick={() => navigate("/addCategory")}
+                    onClick={() => navigate("/CreateCategory")}
                   >
                     Add new category
                   </a>
@@ -189,6 +185,7 @@ const Header = ({ user }) => {
             hiddenFrom="sm"
           />
         </Group>
+        <Divider />
       </header>
     </Box>
   );
