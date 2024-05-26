@@ -1,11 +1,6 @@
-.ads-list {
+.adsList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-}
-
-.ad-card-wrapper {
-  flex: 1 1 calc(25% - 16px);
-  box-sizing: border-box;
 }

@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 
-function LoginPage() {
+function LoginPage({ setUser }) {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -41,8 +39,8 @@ function LoginPage() {
       }
 
       localStorage.setItem("token", token);
-
       localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
 
       if (user.role === "admin") {
         navigate("/dashboard");

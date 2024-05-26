@@ -30,21 +30,16 @@ const AdsList = () => {
 
     fetchAds();
   }, []);
-  if (error) {
-    return <Text color="red">Error: {error}</Text>;
-  }
-
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user._id;
-  console.log(userId);
 
   return (
-    <Container>
-      <Title align="center">All ads</Title>
+    <Container fluid>
+      <Title align="center" mb="lg">
+        All ads
+      </Title>
       <div className={styles.adsList}>
         {ads.map((ad) => (
-          <div key={ad._id} className={styles.adCardWrapper}>
-            <AdCard ad={ad} userId={userId} />
+          <div key={ad._id}>
+            <AdCard ad={ad} />
           </div>
         ))}
       </div>

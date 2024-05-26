@@ -11,13 +11,23 @@ const Header = ({ user }) => {
       <ul>
         <li onClick={() => navigate("/")}>Home</li>
         <li onClick={() => navigate("/about")}>About</li>
-        <li onClick={() => navigate("/myAds")}>Mano Skelbimai</li>
-        <li onClick={() => navigate("/createAd")}>Pridėti skelbimą</li>
-        {user && user.role === "admin" && (
+        {user && (
           <>
-            <li onClick={() => navigate("/add-category")}>Add Category</li>
-            <li onClick={() => navigate("/block-ad")}>Block Ad</li>
-            <li onClick={() => navigate("/block-user")}>Block User</li>
+            {user.role === "simple" && (
+              <>
+                <li onClick={() => navigate("/myAds")}>Mano Skelbimai</li>
+                <li onClick={() => navigate("/createAd")}>Pridėti skelbimą</li>
+              </>
+            )}
+            {user.role === "admin" && (
+              <>
+                <li onClick={() => navigate("/myAds")}>Mano Skelbimai</li>
+                <li onClick={() => navigate("/createAd")}>Pridėti skelbimą</li>
+                <li onClick={() => navigate("/add-category")}>Add Category</li>
+                <li onClick={() => navigate("/block-ad")}>Block Ad</li>
+                <li onClick={() => navigate("/block-user")}>Block User</li>
+              </>
+            )}
           </>
         )}
       </ul>
