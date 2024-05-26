@@ -71,7 +71,7 @@ const Header = ({ user }) => {
   ));
 
   return (
-    <Box pb={120}>
+    <Box pb={80} mt={20}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <Group h="100%" gap={0} visibleFrom="sm">

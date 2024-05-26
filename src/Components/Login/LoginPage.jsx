@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./LoginPage.module.css";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Container,
+  Title,
+  Text,
+  Paper,
+} from "@mantine/core";
 
 function LoginPage({ setUser }) {
   const navigate = useNavigate();
@@ -40,7 +48,7 @@ function LoginPage({ setUser }) {
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
+      setUser(user); //! Butina updatinti userio state, kitaip prisiloginus reikes page refresho kad pamatytu specifinius komponentus pagal userio role. Updatinimas vyksta propsuose ir app.jsx
 
       if (user.role === "admin") {
         navigate("/dashboard");
@@ -54,28 +62,48 @@ function LoginPage({ setUser }) {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleLogin} className={styles.loginForm}>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <button onClick={handleBackToRegister}>Register an account</button>
-
-      <button onClick={handleBackToHome}>Home</button>
-    </div>
+    <Container>
+      <Title mt={250}>Login</Title>
+      {error && <Text color="red">{error}</Text>}
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <form onSubmit={handleLogin}>
+          <TextInput
+            label="Email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            mt="md"
+          />
+          <Button type="submit" fullWidth mt="xl">
+            Login
+          </Button>
+          <Button
+            variant="default"
+            fullWidth
+            mt="xl"
+            onClick={handleBackToHome}
+          >
+            Home
+          </Button>
+          <Button
+            variant="default"
+            fullWidth
+            mt="md"
+            onClick={handleBackToRegister}
+          >
+            Register
+          </Button>
+        </form>
+      </Paper>
+    </Container>
   );
 }
 
