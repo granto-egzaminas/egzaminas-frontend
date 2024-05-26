@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./RegisterPage.module.css";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Container,
+  Title,
+  Text,
+  Paper,
+} from "@mantine/core";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -41,41 +49,49 @@ function RegisterPage() {
   };
 
   return (
-    <div className={styles.registerContainer}>
-      <h2>Register Form</h2>
-      {error && <p>{error}</p>}
-      <div>
-        <form className={styles.registerForm} onClick={handleRegister}>
-          <input
-            type="text"
+    <Container>
+      <Title mt={250}>Register</Title>
+      {error && <Text color="red">{error}</Text>}
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <form onSubmit={handleRegister}>
+          <TextInput
+            label="Name"
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          ></input>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <input
-            type="password"
-            placeholder="Enter your password"
+            required
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></input>
-          <button className={styles.registerBtn} type="submit">
-            Create
-          </button>
+            required
+            mt="md"
+          />
+          <Button type="submit" fullWidth mt="xl">
+            Register
+          </Button>
+          <Button
+            variant="default"
+            fullWidth
+            mt="xl"
+            onClick={handleBackToLogin}
+          >
+            Back to Login
+          </Button>
+
+          <Button
+            variant="default"
+            fullWidth
+            mt="md"
+            onClick={handleBackToHome}
+          >
+            Home
+          </Button>
         </form>
-      </div>
-      <button type="button" onClick={handleBackToLogin}>
-        Back to Login
-      </button>
-      <button type="button" onClick={handleBackToHome}>
-        Home
-      </button>
-    </div>
+      </Paper>
+    </Container>
   );
 }
 
