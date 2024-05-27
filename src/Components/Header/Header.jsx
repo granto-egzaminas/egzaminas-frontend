@@ -15,6 +15,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./Header.module.css";
+import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -67,7 +68,7 @@ const Header = ({ user }) => {
   ));
 
   return (
-    <Box pb={80} mt={20}>
+    <Box pb={40} mt={20}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <Group h="100%" gap={0} visibleFrom="sm">
@@ -185,7 +186,7 @@ const Header = ({ user }) => {
             hiddenFrom="sm"
           />
         </Group>
-        <Divider />
+        <Divider className={styles.divider} mt="md" />
       </header>
     </Box>
   );

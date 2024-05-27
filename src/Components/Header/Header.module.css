@@ -1,7 +1,7 @@
 .header {
   height: rem(60px);
-  padding-left: var(--mantine-spacing-md);
-  padding-right: var(--mantine-spacing-md);
+  padding-left: var(--mantine-spacing-xl);
+  padding-right: var(--mantine-spacing-xl);
   border-bottom: rem(1px) solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
@@ -54,4 +54,8 @@
   padding-bottom: var(--mantine-spacing-xl);
   border-top: rem(1px) solid
     light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+}
+
+.divider {
+  box-shadow: 0 0 10px rgb(104, 189, 218);
 }
