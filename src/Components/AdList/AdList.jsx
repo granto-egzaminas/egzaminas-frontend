@@ -43,7 +43,7 @@ const AdsList = () => {
           </div>
         ))}
       </div>
-      <Divider />
+      <Divider className={styles.divider} mt="md" />
     </Container>
   );
 };
