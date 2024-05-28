@@ -5,7 +5,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { useDisclosure } from "@mantine/hooks";
 import CommentsModal from "../CommentsModal/CommentsModal";
 
-export default function CommentsButton({ adId }) {
+export default function CommentButton({ adId }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [commentsCount, setCommentsCount] = useState(0);
 

@@ -35,17 +35,19 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          text,
-          adId,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/comments/ad/${adId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            text,
+          }),
+        }
+      );
 
       const data = await response.json();
 
