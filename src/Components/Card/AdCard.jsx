@@ -3,6 +3,7 @@ import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { AiFillDollarCircle } from "react-icons/ai";
 import CommentButton from "../Buttons/CommentButton";
 import LikeButton from "../Buttons/LikeButton";
+import FavoriteButton from "../Buttons/FavoriteButton";
 function AdCard({ ad }) {
   return (
     <Card
@@ -33,12 +34,10 @@ function AdCard({ ad }) {
         {ad.description}
       </Text>
 
-      <Button color="blue" fullWidth mt="md" radius="md" mb="sm">
-        Favorite
-      </Button>
       <Group position="apart">
         <LikeButton adId={ad._id} />
         <CommentButton adId={ad._id} />
+        <FavoriteButton adId={ad._id} />
       </Group>
     </Card>
   );
