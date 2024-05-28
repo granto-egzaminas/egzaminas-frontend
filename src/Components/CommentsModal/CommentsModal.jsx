@@ -68,7 +68,6 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
     <Modal opened={opened} onClose={close} size="lg">
       <Modal.Header>
         <Modal.Title>Comments</Modal.Title>
-        <Modal.CloseButton onClick={close} />
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
