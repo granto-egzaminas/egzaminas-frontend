@@ -1,9 +1,8 @@
-// CommentsModal.jsx
 import { useState, useEffect } from "react";
-import { Modal, TextInput, Text, Button } from "@mantine/core";
+import { Modal, TextInput, Text, Button, Group } from "@mantine/core";
 
 export default function CommentsModal({ adId, opened, close, onNewComment }) {
-  const [text, setText] = useState(""); // State to store the comment text
+  const [text, setText] = useState(""); // State to store the comment input text
   const [message, setMessage] = useState(""); // State to store message
   const [comments, setComments] = useState([]); // State to store comments
 
@@ -21,7 +20,7 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
 
       if (response.ok) {
         const data = await response.json();
-        setComments(data.comments);
+        setComments(data.comments.reverse());
       } else {
         setMessage("Failed to fetch comments");
       }
@@ -54,7 +53,7 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
         setMessage("Comment created successfully");
         setText(""); // Clear the text input after submitting
         fetchComments(); // Fetch comments after adding a new comment
-        onNewComment(); // Call the onNewComment callback
+        onNewComment(); // to re-render CommentsButton component with updated comment count
       } else {
         setMessage(`${data.error}`);
       }
@@ -79,7 +78,7 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <Button type="submit" variant="outline" fullWidth mt="md">
+          <Button type="submit" variant="outline" mt="md">
             Submit
           </Button>
           {message && (
@@ -90,9 +89,19 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
         </form>
         {comments && comments.length > 0 ? (
           comments.map((comment) => (
-            <Text key={comment._id} mt="xs" c="dimmed">
-              {comment.text}
-            </Text>
+            <div key={comment._id} style={{ marginTop: "16px" }}>
+              <Group>
+                <div>
+                  <Text size="sm">{comment.user_id.name}</Text>
+                  <Text size="xs" c="dimmed">
+                    {new Date(comment.createdAt).toLocaleString()}
+                  </Text>
+                </div>
+              </Group>
+              <Text pl={54} pt="sm" size="sm">
+                {comment.text}
+              </Text>
+            </div>
           ))
         ) : (
           <Text mt="xs" c="dimmed">

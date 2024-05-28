@@ -31,19 +31,24 @@ export default function CommentsButton({ adId }) {
   };
 
   const handleNewComment = () => {
-    fetchCommentsCount(); // Refetch the comments count
+    fetchCommentsCount(); // Re-fetch the comments count when new comment is added by the user
   };
 
   return (
     <>
-      <Button onClick={open} size="sm" rightSection={<AiOutlineComment />}>
-        {commentsCount} comments
+      <Button
+        onClick={open}
+        size="sm"
+        variant="outline"
+        rightSection={<AiOutlineComment />}
+      >
+        {commentsCount}
       </Button>
       <CommentsModal
         adId={adId}
         opened={opened}
         close={close}
-        onNewComment={handleNewComment} // Pass the callback
+        onNewComment={handleNewComment}
       />
     </>
   );

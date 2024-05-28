@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { AiFillDollarCircle, AiFillLike } from "react-icons/ai";
-import CommentsButton from "../Buttons/CommentsButton"; // Adjust the import path as necessary
-
+import CommentsButton from "../Buttons/CommentsButton";
 function AdCard({ ad }) {
   return (
     <Card
