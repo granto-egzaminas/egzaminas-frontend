@@ -3,29 +3,11 @@ import { Button } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 
 export default function FavoriteButton({ adId }) {
-  const [favoritesCount, setFavoritesCount] = useState(0);
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    fetchFavoritesCount();
     checkIfFavorited();
   }, []);
-
-  const fetchFavoritesCount = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/favorites/ad/${adId}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setFavoritesCount(data.favorites.length);
-      } else {
-        console.error(`Failed to fetch favorites count`);
-      }
-    } catch (error) {
-      console.error(`Failed to fetch favorites count: ${error.message}`);
-    }
-  };
 
   const checkIfFavorited = async () => {
     try {
@@ -64,7 +46,6 @@ export default function FavoriteButton({ adId }) {
       );
 
       if (response.ok) {
-        setFavoritesCount((prevCount) => prevCount + (isFavorited ? -1 : 1));
         setIsFavorited(!isFavorited);
       } else {
         console.error(
@@ -86,9 +67,8 @@ export default function FavoriteButton({ adId }) {
       size="sm"
       variant="outline"
       color={isFavorited ? "yellow" : "gray"}
-      rightSection={<AiFillStar />}
     >
-      {favoritesCount}
+      {<AiFillStar />}
     </Button>
   );
 }

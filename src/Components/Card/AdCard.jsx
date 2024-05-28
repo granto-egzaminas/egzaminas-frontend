@@ -34,7 +34,7 @@ function AdCard({ ad }) {
         {ad.description}
       </Text>
 
-      <Group position="apart">
+      <Group position="closest">
         <LikeButton adId={ad._id} />
         <CommentButton adId={ad._id} />
         <FavoriteButton adId={ad._id} />

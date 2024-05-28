@@ -82,9 +82,9 @@ export default function LikeButton({ adId }) {
       size="sm"
       variant="outline"
       color={isLiked ? "red" : "gray"}
-      rightSection={<AiFillLike />}
     >
       {likesCount}
+      {<AiFillLike />}
     </Button>
   );
 }
