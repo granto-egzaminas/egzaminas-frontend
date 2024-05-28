@@ -4,7 +4,8 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import CommentButton from "../Buttons/CommentButton";
 import LikeButton from "../Buttons/LikeButton";
 import FavoriteButton from "../Buttons/FavoriteButton";
-function AdCard({ ad }) {
+
+const AdCard = ({ ad }) => {
   return (
     <Card
       shadow="sm"
@@ -41,6 +42,6 @@ function AdCard({ ad }) {
       </Group>
     </Card>
   );
-}
+};
 
 export default AdCard;

@@ -9,6 +9,8 @@ import {
   Paper,
   Select,
 } from "@mantine/core";
+import styles from "./CreateAdd.module.css";
+import classes from "./CreateAdd.module.css";
 import { useNavigate } from "react-router-dom";
 
 const CreateAd = () => {
@@ -80,6 +82,9 @@ const CreateAd = () => {
 
   return (
     <Container>
+      <a className={classes.link} href="" onClick={() => navigate("/")}>
+        Home
+      </a>
       <Title mt={200}>Create Ad</Title>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form onSubmit={handleSubmit}>
