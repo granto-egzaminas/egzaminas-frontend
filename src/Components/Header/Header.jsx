@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   HoverCard,
   Group,
@@ -14,13 +16,11 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
-import classes from "./Header.module.css";
-import styles from "./Header.module.css";
+import classes from "./Header.module.css"; // Import only necessary styles
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Header = ({ user }) => {
-  // vars
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
@@ -30,7 +30,7 @@ const Header = ({ user }) => {
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
-  // fetch cats
+  // Fetch categories from the backend
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -44,7 +44,7 @@ const Header = ({ user }) => {
           const data = await response.json();
           setCategories(data.categories);
         } else {
-          console.error("error fetching categories:", response.statusText);
+          console.error("Error fetching categories:", response.statusText);
         }
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -135,21 +135,21 @@ const Header = ({ user }) => {
                   <a
                     href=""
                     className={classes.link}
-                    onClick={() => navigate("/CreateCategory")}
+                    onClick={() => navigate("/createCategory")}
                   >
                     Add new category
                   </a>
                   <a
                     href=""
                     className={classes.link}
-                    onClick={() => navigate("/blockAd")}
+                    onClick={() => navigate("/blockAdPage")}
                   >
                     Block ad
                   </a>
                   <a
                     href=""
                     className={classes.link}
-                    onClick={() => navigate("/blockUser")}
+                    onClick={() => navigate("/blockUserPage")}
                   >
                     Block user
                   </a>
@@ -186,7 +186,7 @@ const Header = ({ user }) => {
             hiddenFrom="sm"
           />
         </Group>
-        <Divider className={styles.divider} mt="md" />
+        <Divider className={classes.divider} mt="md" /> {}
       </header>
     </Box>
   );
