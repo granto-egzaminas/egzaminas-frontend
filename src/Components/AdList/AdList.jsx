@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
-import { Container, Title, Divider } from "@mantine/core";
+import { Container, Title, Divider, TextInput } from "@mantine/core";
 import styles from "./AdList.module.css";
 
 const AdsList = () => {
   const [ads, setAds] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -31,17 +32,35 @@ const AdsList = () => {
     fetchAds();
   }, []);
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredAds = ads.filter((ad) =>
+    ad.description.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <Container fluid>
       <Title align="center" mb="lg">
         All ads
       </Title>
+      <TextInput
+        placeholder="Search"
+        value={searchQuery}
+        onChange={(e) => handleSearch(e.target.value)}
+        className={styles.search}
+      />
       <div className={styles.adsList}>
-        {ads.map((ad) => (
-          <div key={ad._id}>
-            <AdCard ad={ad} />
-          </div>
-        ))}
+        {filteredAds.length > 0 ? (
+          filteredAds.map((ad) => (
+            <div key={ad._id}>
+              <AdCard ad={ad} />
+            </div>
+          ))
+        ) : (
+          <p>No ads found</p>
+        )}
       </div>
       <Divider className={styles.divider} mt="md" />
     </Container>
