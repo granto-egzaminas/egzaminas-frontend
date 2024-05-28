@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
-import { AiFillDollarCircle, AiFillLike } from "react-icons/ai";
+import { AiFillDollarCircle } from "react-icons/ai";
 import CommentButton from "../Buttons/CommentButton";
+import LikeButton from "../Buttons/LikeButton";
 function AdCard({ ad }) {
   return (
     <Card
@@ -36,9 +37,7 @@ function AdCard({ ad }) {
         Favorite
       </Button>
       <Group position="apart">
-        <Text>
-          {ad.like_ids.length} <AiFillLike />
-        </Text>
+        <LikeButton adId={ad._id} />
         <CommentButton adId={ad._id} />
       </Group>
     </Card>

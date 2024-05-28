@@ -4,9 +4,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 export default function LikeButton({ adId }) {
   const [likesCount, setLikesCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     fetchLikesCount();
+    checkIfLiked();
   }, []);
 
   const fetchLikesCount = async () => {
@@ -25,13 +27,35 @@ export default function LikeButton({ adId }) {
     }
   };
 
-  const handleLike = async () => {
+  const checkIfLiked = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:5000/api/likes/ad/${adId}/isLiked`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setIsLiked(data.isLiked);
+      } else {
+        console.error(`Failed to check like status`);
+      }
+    } catch (error) {
+      console.error(`Failed to check like status: ${error.message}`);
+    }
+  };
+
+  const handleLikeToggle = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
         `http://localhost:5000/api/likes/ad/${adId}`,
         {
-          method: "POST",
+          method: isLiked ? "DELETE" : "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -40,20 +64,24 @@ export default function LikeButton({ adId }) {
       );
 
       if (response.ok) {
-        setLikesCount((prevCount) => prevCount + 1); // Increment likes count
+        setLikesCount((prevCount) => prevCount + (isLiked ? -1 : 1));
+        setIsLiked(!isLiked);
       } else {
-        console.error("Failed to like the ad");
+        console.error(`Failed to ${isLiked ? "unlike" : "like"} the ad`);
       }
     } catch (error) {
-      console.error(`Failed to like the ad: ${error.message}`);
+      console.error(
+        `Failed to ${isLiked ? "unlike" : "like"} the ad: ${error.message}`
+      );
     }
   };
 
   return (
     <Button
-      onClick={handleLike}
+      onClick={handleLikeToggle}
       size="sm"
       variant="outline"
+      color={isLiked ? "red" : "gray"}
       rightSection={<AiOutlineHeart />}
     >
       {likesCount}
