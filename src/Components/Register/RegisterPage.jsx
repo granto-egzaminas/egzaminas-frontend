@@ -61,6 +61,13 @@ function RegisterPage() {
             onChange={(e) => setName(e.target.value)}
             required
           />
+          <TextInput
+            label="Email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <PasswordInput
             label="Password"
             placeholder="Password"
