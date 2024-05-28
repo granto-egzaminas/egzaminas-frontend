@@ -18,7 +18,7 @@ export default function LikeButton({ adId }) {
         const data = await response.json();
         setLikesCount(data.likes.length);
       } else {
-        console.error(`${data.error}`);
+        console.error(`Failed to fetch likes count`);
       }
     } catch (error) {
       console.error(`Failed to fetch likes count: ${error.message}`);
@@ -56,7 +56,7 @@ export default function LikeButton({ adId }) {
       variant="outline"
       rightSection={<AiOutlineHeart />}
     >
-      {likesCount} Likes
+      {likesCount}
     </Button>
   );
 }
