@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { AiFillDollarCircle, AiFillLike } from "react-icons/ai";
 import CommentButton from "../Buttons/CommentButton";
-function AdCard({ ad }) {
+const AdCard = ({ ad }) => {
   return (
     <Card
       shadow="sm"
@@ -43,6 +43,6 @@ function AdCard({ ad }) {
       </Group>
     </Card>
   );
-}
+};
 
 export default AdCard;

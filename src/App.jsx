@@ -9,6 +9,7 @@ import LoginPage from "./Components/Login/LoginPage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import AdList from "./Components/AdList/AdList";
+import MyAds from "./Components/UserAds/UserAdsList";
 import CreateAd from "./Components/AdAdd/CreateAdd";
 import CreateCategory from "./Components/CategoryAdd/CreateCategory";
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createAd" element={<CreateAd />} />
         <Route path="/createCategory" element={<CreateCategory />} />
+        <Route path="/myAds" element={<MyAds />} />
         <Route
           path="*"
           element={
