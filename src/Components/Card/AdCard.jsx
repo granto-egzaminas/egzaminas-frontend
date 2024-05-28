@@ -1,11 +1,7 @@
 import React from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
-import {
-  AiFillDollarCircle,
-  AiFillLike,
-  AiOutlineComment,
-} from "react-icons/ai";
-import CommentsModal from "../CommentsModal/CommentsModal"; // Adjust the import path as necessary
+import { AiFillDollarCircle, AiFillLike } from "react-icons/ai";
+import CommentsButton from "../Buttons/CommentsButton"; // Adjust the import path as necessary
 
 function AdCard({ ad }) {
   return (
@@ -44,7 +40,7 @@ function AdCard({ ad }) {
         <Text>
           {ad.like_ids.length} <AiFillLike />
         </Text>
-        <CommentsModal adId={ad._id} />
+        <CommentsButton adId={ad._id} />
       </Group>
     </Card>
   );
