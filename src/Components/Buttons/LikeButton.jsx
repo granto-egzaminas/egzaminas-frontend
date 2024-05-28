@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mantine/core";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 
 export default function LikeButton({ adId }) {
   const [likesCount, setLikesCount] = useState(0);
@@ -82,7 +82,7 @@ export default function LikeButton({ adId }) {
       size="sm"
       variant="outline"
       color={isLiked ? "red" : "gray"}
-      rightSection={<AiOutlineHeart />}
+      rightSection={<AiFillLike />}
     >
       {likesCount}
     </Button>
