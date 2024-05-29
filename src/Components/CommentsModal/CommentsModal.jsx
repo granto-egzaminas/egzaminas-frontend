@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, TextInput, Text, Button, Group } from "@mantine/core";
+import { Modal, TextInput, Text, Button, Group, Paper } from "@mantine/core";
 
 export default function CommentsModal({ adId, opened, close, onNewComment }) {
   const [text, setText] = useState(""); // State to store the comment input text
@@ -68,7 +68,6 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
     <Modal opened={opened} onClose={close} size="lg">
       <Modal.Header>
         <Modal.Title>Comments</Modal.Title>
-        <Modal.CloseButton onClick={close} />
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
@@ -80,7 +79,13 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <Button type="submit" variant="outline" mt="md">
+          <Button
+            type="submit"
+            color="orange"
+            variant="default"
+            mt="md"
+            mb="lg"
+          >
             Submit
           </Button>
           {message && (
@@ -91,19 +96,21 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
         </form>
         {comments && comments.length > 0 ? (
           comments.map((comment) => (
-            <div key={comment._id} style={{ marginTop: "16px" }}>
+            <Paper key={comment._id} withBorder shadow="md" p="sm" mt="md">
               <Group>
                 <div>
-                  <Text size="sm">{comment.user_id.name}</Text>
                   <Text size="xs" c="dimmed">
                     {new Date(comment.createdAt).toLocaleString()}
                   </Text>
+                  <Text size="sm" pt="xs">
+                    {comment.user_id.name}:
+                  </Text>
                 </div>
               </Group>
-              <Text pl={54} pt="sm" size="sm">
+              <Text pl="lg" pt="xs" size="sm">
                 {comment.text}
               </Text>
-            </div>
+            </Paper>
           ))
         ) : (
           <Text mt="xs" c="dimmed">
