@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 
-export default function FavoriteButton({ adId }) {
+export default function FavoriteButton({ buttonText, adId }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
+  console.log("hello");
   useEffect(() => {
     checkIfFavorited();
   }, []);
@@ -49,7 +50,9 @@ export default function FavoriteButton({ adId }) {
         setIsFavorited(!isFavorited);
       } else {
         console.error(
-          `Failed to ${isFavorited ? "unfavorite" : "favorite"} the ad`
+          `Failessssd to ${isFavorited ? "unfavorite" : "favorite"} the ad ${
+            response.status
+          }`
         );
       }
     } catch (error) {
@@ -66,9 +69,10 @@ export default function FavoriteButton({ adId }) {
       onClick={handleFavoriteToggle}
       size="sm"
       variant="outline"
-      color={isFavorited ? "yellow" : "gray"}
+      color={isFavorited ? "orange" : "darkgray"}
+      rightSection={<AiFillStar />}
     >
-      {<AiFillStar />}
+      {buttonText}
     </Button>
   );
 }

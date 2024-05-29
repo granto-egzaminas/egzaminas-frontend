@@ -40,6 +40,7 @@ export default function CommentButton({ adId }) {
         onClick={open}
         size="sm"
         variant="outline"
+        color="darkgray"
         rightSection={<AiOutlineComment />}
       >
         {commentsCount}

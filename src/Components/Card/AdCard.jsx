@@ -35,10 +35,10 @@ const AdCard = ({ ad }) => {
         {ad.description}
       </Text>
 
-      <Group position="closest">
+      <Group position="apart" mt="md">
+        <FavoriteButton buttonText={"Favorite"} adId={ad._id} />
         <LikeButton adId={ad._id} />
         <CommentButton adId={ad._id} />
-        <FavoriteButton adId={ad._id} />
       </Group>
     </Card>
   );
