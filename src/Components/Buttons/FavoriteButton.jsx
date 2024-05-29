@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Text } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 
 export default function FavoriteButton({ buttonText, adId }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
-  console.log("hello");
   useEffect(() => {
     checkIfFavorited();
   }, []);
