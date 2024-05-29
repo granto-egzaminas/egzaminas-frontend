@@ -81,10 +81,10 @@ export default function LikeButton({ adId }) {
       onClick={handleLikeToggle}
       size="sm"
       variant="outline"
-      color={isLiked ? "red" : "gray"}
+      color={isLiked ? "red" : "darkgray"}
+      rightSection={<AiFillLike />}
     >
       {likesCount}
-      {<AiFillLike />}
     </Button>
   );
 }
