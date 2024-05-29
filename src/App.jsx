@@ -31,12 +31,9 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createAd" element={<CreateAd />} />
         <Route path="/createCategory" element={<CreateCategory />} />
-
         <Route path="/blockAdPage" element={<BlockAdPage />} />
         <Route path="/blockUserPage" element={<BlockUserPage />} />
-
         <Route path="/myAds" element={<MyAds />} />
-
         <Route
           path="*"
           element={
