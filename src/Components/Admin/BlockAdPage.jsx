@@ -30,14 +30,11 @@ const BlockAdPage = () => {
   const fetchAds = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        "https://backend-ljj8.onrender.com/api/ads",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch("http://localhost:5000/api/ads", {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -55,7 +52,7 @@ const BlockAdPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/ads/${selectedAd}`,
+        `http://localhost:5000/api/ads/${selectedAd}`,
         {
           method: "DELETE",
           headers: {

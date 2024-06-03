@@ -14,7 +14,7 @@ export default function LikeButton({ adId }) {
   const fetchLikesCount = async () => {
     try {
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}`,
+        `http://localhost:5000/api/likes/ad/${adId}`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -31,7 +31,7 @@ export default function LikeButton({ adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}/isLiked`,
+        `http://localhost:5000/api/likes/ad/${adId}/isLiked`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ export default function LikeButton({ adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}`,
+        `http://localhost:5000/api/likes/ad/${adId}`,
         {
           method: isLiked ? "DELETE" : "POST",
           headers: {

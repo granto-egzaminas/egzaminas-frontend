@@ -22,7 +22,7 @@ const UserAdsList = () => {
 
       try {
         const response = await fetch(
-          `https://backend-ljj8.onrender.com/api/ads/user/${userId}`,
+          `http://localhost:5000/api/ads/user/${userId}`,
           {
             method: "GET",
             headers: {
@@ -57,7 +57,7 @@ const UserAdsList = () => {
 
     try {
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/ads/${updatedAd._id}`,
+        `http://localhost:5000/api/ads/${updatedAd._id}`,
         {
           method: "PUT",
           headers: {

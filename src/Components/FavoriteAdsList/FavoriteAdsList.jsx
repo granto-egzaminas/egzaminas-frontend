@@ -23,7 +23,7 @@ const FavoriteAdsList = ({ user, setUser }) => {
 
       try {
         const response = await fetch(
-          `https://backend-ljj8.onrender.com/api/ads/favorites/user/${userId}`,
+          `http://localhost:5000/api/ads/favorites/user/${userId}`,
           {
             method: "GET",
             headers: {

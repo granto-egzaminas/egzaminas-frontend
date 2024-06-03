@@ -13,7 +13,7 @@ export default function FavoriteButton({ buttonText, adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/favorites/ad/${adId}/isFavorited`,
+        `http://localhost:5000/api/favorites/ad/${adId}/isFavorited`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export default function FavoriteButton({ buttonText, adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/favorites/ad/${adId}`,
+        `http://localhost:5000/api/favorites/ad/${adId}`,
         {
           method: isFavorited ? "DELETE" : "POST",
           headers: {

@@ -28,15 +28,12 @@ const CreateAd = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(
-          "https://backend-ljj8.onrender.com/api/categories/",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        const response = await fetch("http://localhost:5000/api/categories/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+        });
         if (response.ok) {
           const data = await response.json();
           setCategories(data.categories);
@@ -58,22 +55,19 @@ const CreateAd = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(
-        "https://backend-ljj8.onrender.com/api/ads",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            image,
-            price,
-            description,
-            categoryId,
-          }),
+      const response = await fetch("http://localhost:5000/api/ads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({
+          image,
+          price,
+          description,
+          categoryId,
+        }),
+      });
 
       const data = await response.json();
 

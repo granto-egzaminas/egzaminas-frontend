@@ -11,15 +11,12 @@ const AdsList = ({ selectedCategory }) => {
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const response = await fetch(
-          "https://backend-ljj8.onrender.com/api/ads/",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        const response = await fetch("http://localhost:5000/api/ads/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+        });
         if (response.ok) {
           const data = await response.json();
           setAds(data.ads);

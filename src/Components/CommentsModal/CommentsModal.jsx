@@ -15,7 +15,7 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/comments/ad/${adId}`,
+        `http://localhost:5000/api/comments/ad/${adId}`,
       );
 
       if (response.ok) {
@@ -36,7 +36,7 @@ export default function CommentsModal({ adId, opened, close, onNewComment }) {
 
     try {
       const response = await fetch(
-        `https://backend-ljj8.onrender.com/api/comments/ad/${adId}`,
+        `http://localhost:5000/api/comments/ad/${adId}`,
         {
           method: "POST",
           headers: {
