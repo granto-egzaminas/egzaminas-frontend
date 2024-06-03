@@ -1,4 +1,3 @@
-require("dotenv").config();
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
 import { Container, Title, Divider, TextInput } from "@mantine/core";
@@ -8,17 +7,19 @@ const AdsList = ({ selectedCategory }) => {
   const [ads, setAds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
-  const API_URL = process.env.SKELBIMAI_API_URL;
 
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/ads/`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://backend-ljj8.onrender.com/api/ads/",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
         if (response.ok) {
           const data = await response.json();
           setAds(data.ads);
