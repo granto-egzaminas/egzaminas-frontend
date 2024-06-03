@@ -20,9 +20,9 @@ const AdCard = ({ ad, onBlock }) => {
         <Image
           src={ad.image}
           alt="<ad_picture_missing>"
-          height={150}
-          width={150}
-          style={{ objectFit: "cover" }}
+          height={200}
+          width={250}
+          style={{ objectFit: "fill" }}
         />
       </Card.Section>
 

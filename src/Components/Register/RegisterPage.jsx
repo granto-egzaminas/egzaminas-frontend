@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import styles from "./RegisterPage.module.css";
 import { useNavigate } from "react-router-dom";
 import {
   TextInput,
@@ -8,6 +11,7 @@ import {
   Title,
   Text,
   Paper,
+  Divider,
 } from "@mantine/core";
 
 function RegisterPage() {
@@ -16,6 +20,8 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleBackToLogin = () => {
     navigate("/login");
@@ -49,56 +55,61 @@ function RegisterPage() {
   };
 
   return (
-    <Container>
-      <Title mt={250}>Register</Title>
-      {error && <Text color="red">{error}</Text>}
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={handleRegister}>
-          <TextInput
-            label="Name"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <TextInput
-            label="Email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <PasswordInput
-            label="Password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            mt="md"
-          />
-          <Button type="submit" fullWidth mt="xl">
-            Register
-          </Button>
-          <Button
-            variant="default"
-            fullWidth
-            mt="xl"
-            onClick={handleBackToLogin}
-          >
-            Back to Login
-          </Button>
+    <>
+      <Header user={user} />
+      <Container>
+        <Title mt={50}>Register</Title>
+        {error && <Text color="red">{error}</Text>}
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <form onSubmit={handleRegister}>
+            <TextInput
+              label="Name"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <TextInput
+              label="Email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <PasswordInput
+              label="Password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              mt="md"
+            />
+            <Button type="submit" fullWidth mt="xl">
+              Register
+            </Button>
+            <Button
+              variant="default"
+              fullWidth
+              mt="xl"
+              onClick={handleBackToLogin}
+            >
+              Back to Login
+            </Button>
 
-          <Button
-            variant="default"
-            fullWidth
-            mt="md"
-            onClick={handleBackToHome}
-          >
-            Home
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+            <Button
+              variant="default"
+              fullWidth
+              mt="md"
+              onClick={handleBackToHome}
+            >
+              Home
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+      <Divider className={styles.divider} mt="md" />
+      <Footer />
+    </>
   );
 }
 

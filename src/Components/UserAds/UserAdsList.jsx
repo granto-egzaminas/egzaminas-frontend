@@ -1,7 +1,5 @@
-/** @format */
-
-// Import useEffect, useState, and fetch
 import React, { useEffect, useState } from "react";
+import Header from "../Header/Header"; // norint importinti user specific headeri, reikia eiluciu: 16, 45, 99.
 import AdCard from "../Card/AdCard";
 import { Container, Title, Divider, TextInput, Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +13,11 @@ const UserAdsList = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const fetchUserAds = async () => {
       const token = localStorage.getItem("token");
-      const user = JSON.parse(localStorage.getItem("user"));
       const userId = user ? user._id : null;
 
       try {
@@ -30,7 +29,7 @@ const UserAdsList = () => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         if (response.ok) {
           const data = await response.json();
@@ -43,7 +42,7 @@ const UserAdsList = () => {
       }
     };
     fetchUserAds();
-  }, []);
+  }, [user]);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -51,7 +50,7 @@ const UserAdsList = () => {
 
   const handleSave = async (updatedAd) => {
     setAds((prevAds) =>
-      prevAds.map((ad) => (ad._id === updatedAd._id ? updatedAd : ad))
+      prevAds.map((ad) => (ad._id === updatedAd._id ? updatedAd : ad)),
     );
 
     const token = localStorage.getItem("token");
@@ -66,7 +65,7 @@ const UserAdsList = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(updatedAd),
-        }
+        },
       );
       if (!response.ok) {
         console.error("Failed to update ad:", response.statusText);
@@ -92,48 +91,48 @@ const UserAdsList = () => {
   };
 
   const filteredAds = ads.filter((ad) =>
-    ad.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ad.description.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
-    <Container fluid>
-      <a className={styles.link} href="#" onClick={() => navigate("/")}>
-        Home
-      </a>
-      <Title align="center" mb="lg">
-        My Ads
-      </Title>
-      <TextInput
-        placeholder="Search"
-        value={searchQuery}
-        onChange={(e) => handleSearch(e.target.value)}
-        className={styles.search}
-      />
-      <div className={styles.adsList}>
-        {filteredAds.length > 0 ? (
-          filteredAds.map((ad) => (
-            <div key={ad._id}>
-              <AdCard ad={ad} onSave={handleSave} />
-              <Button onClick={() => handleEdit(ad)} variant="outline">
-                Edit
-              </Button>
-            </div>
-          ))
-        ) : (
-          <p>No ads found</p>
-        )}
-      </div>
-      <Divider className={styles.divider} mt="md" />
-      {showEditModal && editingAd && (
-        <EditAdModal
-          ad={editingAd}
-          onSave={handleSave}
-          onClose={handleModalClose}
-          onConfirmEdit={handleConfirmEdit}
-          showEditModal={showEditModal}
+    <>
+      <Header user={user} />
+      <Container fluid>
+        <Title align="center" mb="lg">
+          My Ads
+        </Title>
+        <TextInput
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+          className={styles.search}
         />
-      )}
-    </Container>
+        <div className={styles.adsList}>
+          {filteredAds.length > 0 ? (
+            filteredAds.map((ad) => (
+              <div key={ad._id}>
+                <AdCard ad={ad} onSave={handleSave} />
+                <Button onClick={() => handleEdit(ad)} variant="outline">
+                  Edit
+                </Button>
+              </div>
+            ))
+          ) : (
+            <p>No ads found</p>
+          )}
+        </div>
+        <Divider className={styles.divider} mt="md" />
+        {showEditModal && editingAd && (
+          <EditAdModal
+            ad={editingAd}
+            onSave={handleSave}
+            onClose={handleModalClose}
+            onConfirmEdit={handleConfirmEdit}
+            showEditModal={showEditModal}
+          />
+        )}
+      </Container>
+    </>
   );
 };
 
