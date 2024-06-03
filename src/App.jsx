@@ -15,7 +15,6 @@ import BlockUserPage from "./Components/Admin/BlockUserPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -23,10 +22,6 @@ const App = () => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
-  const handleCategorySelect = (categoryId) => {
-    setSelectedCategory(categoryId);
-  };
 
   return (
     <Router>
@@ -43,8 +38,8 @@ const App = () => {
           path="*"
           element={
             <>
-              <Header user={user} onCategorySelect={handleCategorySelect} />
-              <AdList selectedCategory={selectedCategory} />
+              <Header user={user} />
+              <AdList />
               <Footer />
             </>
           }
