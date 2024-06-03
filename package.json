@@ -44,7 +44,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "postcss": "^8.4.38",
