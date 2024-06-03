@@ -29,11 +29,14 @@ const BlockUserPage = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "https://backend-ljj8.onrender.com/api/users",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -52,7 +55,7 @@ const BlockUserPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/users/${selectedUser}`,
+        `https://backend-ljj8.onrender.com/api/users/${selectedUser}`,
         {
           method: "DELETE",
           headers: {

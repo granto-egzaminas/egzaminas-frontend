@@ -14,7 +14,7 @@ export default function LikeButton({ adId }) {
   const fetchLikesCount = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/likes/ad/${adId}`
+        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -31,12 +31,12 @@ export default function LikeButton({ adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/likes/ad/${adId}/isLiked`,
+        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}/isLiked`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       if (response.ok) {
         const data = await response.json();
@@ -53,14 +53,14 @@ export default function LikeButton({ adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/likes/ad/${adId}`,
+        `https://backend-ljj8.onrender.com/api/likes/ad/${adId}`,
         {
           method: isLiked ? "DELETE" : "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.ok) {
@@ -71,7 +71,7 @@ export default function LikeButton({ adId }) {
       }
     } catch (error) {
       console.error(
-        `Failed to ${isLiked ? "unlike" : "like"} the ad: ${error.message}`
+        `Failed to ${isLiked ? "unlike" : "like"} the ad: ${error.message}`,
       );
     }
   };

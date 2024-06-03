@@ -26,12 +26,15 @@ const CreateCategory = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/categories/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://backend-ljj8.onrender.com/api/categories/",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
         if (response.ok) {
           const data = await response.json();
           setCategories(data.categories);
@@ -53,16 +56,19 @@ const CreateCategory = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/categories/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "https://backend-ljj8.onrender.com/api/categories/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name,
+          }),
         },
-        body: JSON.stringify({
-          name,
-        }),
-      });
+      );
 
       const data = await response.json();
 

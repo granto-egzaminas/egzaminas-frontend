@@ -13,12 +13,12 @@ export default function FavoriteButton({ buttonText, adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/favorites/ad/${adId}/isFavorited`,
+        `https://backend-ljj8.onrender.com/api/favorites/ad/${adId}/isFavorited`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       if (response.ok) {
         const data = await response.json();
@@ -35,14 +35,14 @@ export default function FavoriteButton({ buttonText, adId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/favorites/ad/${adId}`,
+        `https://backend-ljj8.onrender.com/api/favorites/ad/${adId}`,
         {
           method: isFavorited ? "DELETE" : "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.ok) {
@@ -51,14 +51,14 @@ export default function FavoriteButton({ buttonText, adId }) {
         console.error(
           `Failessssd to ${isFavorited ? "unfavorite" : "favorite"} the ad ${
             response.status
-          }`
+          }`,
         );
       }
     } catch (error) {
       console.error(
         `Failed to ${isFavorited ? "unfavorite" : "favorite"} the ad: ${
           error.message
-        }`
+        }`,
       );
     }
   };

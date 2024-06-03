@@ -16,7 +16,7 @@ export default function CommentButton({ adId }) {
   const fetchCommentsCount = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/comments/ad/${adId}`
+        `https://backend-ljj8.onrender.com/api/comments/ad/${adId}`,
       );
       if (response.ok) {
         const data = await response.json();
