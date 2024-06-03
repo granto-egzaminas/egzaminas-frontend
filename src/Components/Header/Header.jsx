@@ -117,6 +117,13 @@ const Header = ({ user }) => {
                   <a
                     href=""
                     className={classes.link}
+                    onClick={() => navigate("/favoriteAds")}
+                  >
+                    FavoriteAds
+                  </a>
+                  <a
+                    href=""
+                    className={classes.link}
                     onClick={() => navigate("/myAds")}
                   >
                     My ads
