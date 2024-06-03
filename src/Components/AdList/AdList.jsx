@@ -1,4 +1,5 @@
-require("dotenv").config();
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
 import { Container, Title, Divider, TextInput } from "@mantine/core";
@@ -8,12 +9,11 @@ const AdsList = ({ selectedCategory }) => {
   const [ads, setAds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
-  const API_URL = process.env.SKELBIMAI_API_URL;
 
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/ads/`, {
+        const response = await fetch("http://localhost:5000/api/ads/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
