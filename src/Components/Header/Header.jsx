@@ -16,7 +16,7 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
-import classes from "./Header.module.css"; // Import only necessary styles
+import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 

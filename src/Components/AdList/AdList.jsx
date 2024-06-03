@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
 import { Container, Title, Divider, TextInput } from "@mantine/core";
@@ -37,7 +39,7 @@ const AdsList = () => {
   };
 
   const filteredAds = ads.filter((ad) =>
-    ad.description.toLowerCase().includes(searchQuery.toLowerCase()),
+    ad.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
