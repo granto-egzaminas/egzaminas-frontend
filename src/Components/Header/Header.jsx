@@ -20,7 +20,7 @@ import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Header = ({ user, onCategorySelect }) => {
+const Header = ({ user }) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
@@ -62,7 +62,7 @@ const Header = ({ user, onCategorySelect }) => {
     <UnstyledButton
       className={classes.subLink}
       key={category._id}
-      onClick={() => onCategorySelect(category._id)}
+      onClick={() => navigate(`/category/${category._id}`)}
     >
       <Text size="sm" fw={500}>
         {category.name}
