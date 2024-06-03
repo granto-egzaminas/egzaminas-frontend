@@ -1,22 +1,31 @@
-/** @format */
-
-// BlockAdPage.js
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import AdCard from "../Card/AdCard";
 import styles from "./BlockAdPage.module.css";
-import { Card, Button, Modal, Group, Text } from "@mantine/core"; // Import Mantine components
+import {
+  Container,
+  Title,
+  Card,
+  Button,
+  Modal,
+  Group,
+  Text,
+  TextInput,
+  Divider,
+} from "@mantine/core"; // Import Mantine components
 
-const BlockAdPage = ({ user }) => {
+const BlockAdPage = () => {
   const [ads, setAds] = useState([]);
   const [error, setError] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
   const [selectedAd, setSelectedAd] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     fetchAds();
-  }, []);
+  }, [user]);
 
   const fetchAds = async () => {
     try {
@@ -49,7 +58,7 @@ const BlockAdPage = ({ user }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -73,17 +82,33 @@ const BlockAdPage = ({ user }) => {
     setSelectedAd(null);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredAds = ads.filter((ad) =>
+    ad.description.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
-    <div>
+    <>
       <Header user={user} />
-      <div className="content">
-        <h2>Block Ads</h2>
+      <Container fluid>
+        <Title align="center" mb="lg">
+          Block Ads{" "}
+        </Title>
+        <TextInput
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+          className={styles.search}
+        />
         {error && <p>{error}</p>}
-        <div className={styles.adsGrid}>
-          {ads.length === 0 ? (
+        <div className={styles.adsList}>
+          {filteredAds.length === 0 ? (
             <p>No ads available</p>
           ) : (
-            ads.map((ad) => (
+            filteredAds.map((ad) => (
               <Card key={ad._id} shadow="sm" padding="lg">
                 <AdCard ad={ad} />
                 <Button color="red" onClick={() => openModal(ad._id)}>
@@ -93,20 +118,22 @@ const BlockAdPage = ({ user }) => {
             ))
           )}
         </div>
-      </div>
-      <Footer />
-      <Modal opened={modalOpened} onClose={closeModal} title="Confirm Block">
-        <Text>Are you sure you want to block this ad?</Text>
-        <Group position="apart" mt="md">
-          <Button variant="default" onClick={closeModal}>
-            Cancel
-          </Button>
-          <Button color="red" onClick={handleBlockAd}>
-            Block
-          </Button>
-        </Group>
-      </Modal>
-    </div>
+
+        <Divider className={styles.divider} mt="md" />
+        <Footer />
+        <Modal opened={modalOpened} onClose={closeModal} title="Confirm Block">
+          <Text>Are you sure you want to block this ad?</Text>
+          <Group position="apart" mt="md">
+            <Button variant="default" onClick={closeModal}>
+              Cancel
+            </Button>
+            <Button color="red" onClick={handleBlockAd}>
+              Block
+            </Button>
+          </Group>
+        </Modal>
+      </Container>
+    </>
   );
 };
 

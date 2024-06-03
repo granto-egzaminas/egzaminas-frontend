@@ -1,3 +1,4 @@
+import Header from "../Header/Header";
 import React, { useState, useEffect } from "react";
 import {
   TextInput,
@@ -22,6 +23,7 @@ const CreateAd = () => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -45,7 +47,7 @@ const CreateAd = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +73,7 @@ const CreateAd = () => {
 
       if (response.ok) {
         setMessage("Ad created successfully");
-        navigate("/"); // paskui pakeisti i /myAds
+        navigate("/myAds");
       } else {
         setMessage(`Ad creation failed: ${data.error}`);
       }
@@ -81,55 +83,55 @@ const CreateAd = () => {
   };
 
   return (
-    <Container>
-      <a className={classes.link} href="" onClick={() => navigate("/")}>
-        Home
-      </a>
-      <Title mt={200}>Create Ad</Title>
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            label="Image URL"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            required
-          />
-          <TextInput
-            label="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-          <TextInput
-            label="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          <Select
-            label="Category"
-            placeholder="Select a category"
-            data={categories.map((category) => ({
-              value: category._id,
-              label: category.name,
-            }))}
-            value={categoryId}
-            onChange={setCategoryId}
-            required
-          />
-          <Button type="submit" mt="xl" fullWidth>
-            Create Ad
-          </Button>
-        </form>
-        {message && (
-          <Box mt="md">
-            <Text color={message.includes("sucesfully") ? "green" : "red"}>
-              {message}
-            </Text>
-          </Box>
-        )}
-      </Paper>
-    </Container>
+    <>
+      <Header user={user} />
+      <Container>
+        <Title mt={200}>Create Ad</Title>
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <form onSubmit={handleSubmit}>
+            <TextInput
+              label="Image URL"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              required
+            />
+            <TextInput
+              label="Price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+            <TextInput
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <Select
+              label="Category"
+              placeholder="Select a category"
+              data={categories.map((category) => ({
+                value: category._id,
+                label: category.name,
+              }))}
+              value={categoryId}
+              onChange={setCategoryId}
+              required
+            />
+            <Button type="submit" mt="xl" fullWidth>
+              Create Ad
+            </Button>
+          </form>
+          {message && (
+            <Box mt="md">
+              <Text color={message.includes("sucesfully") ? "green" : "red"}>
+                {message}
+              </Text>
+            </Box>
+          )}
+        </Paper>
+      </Container>
+    </>
   );
 };
 

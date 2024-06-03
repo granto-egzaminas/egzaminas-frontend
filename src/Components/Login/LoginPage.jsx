@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import styles from "./LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
 import {
   TextInput,
@@ -8,6 +11,7 @@ import {
   Title,
   Text,
   Paper,
+  Divider,
 } from "@mantine/core";
 
 function LoginPage({ setUser }) {
@@ -62,48 +66,53 @@ function LoginPage({ setUser }) {
   };
 
   return (
-    <Container>
-      <Title mt={250}>Login</Title>
-      {error && <Text color="red">{error}</Text>}
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={handleLogin}>
-          <TextInput
-            label="Email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <PasswordInput
-            label="Password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            mt="md"
-          />
-          <Button type="submit" fullWidth mt="xl">
-            Login
-          </Button>
-          <Button
-            variant="default"
-            fullWidth
-            mt="xl"
-            onClick={handleBackToHome}
-          >
-            Home
-          </Button>
-          <Button
-            variant="default"
-            fullWidth
-            mt="md"
-            onClick={handleBackToRegister}
-          >
-            Register
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+    <>
+      <Header user={JSON.parse(localStorage.getItem("user"))} />
+      <Container>
+        <Title mt={50}>Login</Title>
+        {error && <Text color="red">{error}</Text>}
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <form onSubmit={handleLogin}>
+            <TextInput
+              label="Email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <PasswordInput
+              label="Password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              mt="md"
+            />
+            <Button type="submit" fullWidth mt="xl">
+              Login
+            </Button>
+            <Button
+              variant="default"
+              fullWidth
+              mt="xl"
+              onClick={handleBackToHome}
+            >
+              Home
+            </Button>
+            <Button
+              variant="default"
+              fullWidth
+              mt="md"
+              onClick={handleBackToRegister}
+            >
+              Register
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+      <Divider className={styles.divider} mt="md" />
+      <Footer />
+    </>
   );
 }
 

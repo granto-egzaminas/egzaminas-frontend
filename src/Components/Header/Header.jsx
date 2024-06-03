@@ -119,7 +119,7 @@ const Header = ({ user }) => {
                     className={classes.link}
                     onClick={() => navigate("/favoriteAds")}
                   >
-                    FavoriteAds
+                    Favorite Ads
                   </a>
                   <a
                     href=""

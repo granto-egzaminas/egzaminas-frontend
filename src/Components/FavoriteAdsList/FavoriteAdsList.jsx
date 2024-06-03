@@ -7,7 +7,7 @@ import { UseNavigate, useNavigate } from "react-router-dom";
 import classes from "./FavoriteAdsList.module.css";
 import styles from "./FavoriteAdsList.module.css";
 
-const FavoriteAdsList = ({user}) => {
+const FavoriteAdsList = ({ user, setUser }) => {
   const [ads, setAds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
@@ -56,7 +56,7 @@ const FavoriteAdsList = ({user}) => {
 
   return (
     <Container fluid>
-      <Header user={user} />
+      <Header user={user} setUser={setUser} />
       <Title align="center" mb="lg">
         Favorite Ads
       </Title>
