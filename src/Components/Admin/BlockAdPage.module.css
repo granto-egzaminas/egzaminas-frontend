@@ -1,0 +1,16 @@
+/**
+ * BlockAdPage.module.css
+ *
+ * @format
+ */
+
+.adsGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.adCard {
+  width: 100%;
+}

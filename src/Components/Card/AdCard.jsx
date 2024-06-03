@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { AiFillDollarCircle } from "react-icons/ai";
@@ -5,14 +7,14 @@ import CommentButton from "../Buttons/CommentButton";
 import LikeButton from "../Buttons/LikeButton";
 import FavoriteButton from "../Buttons/FavoriteButton";
 
-const AdCard = ({ ad }) => {
+const AdCard = ({ ad, onBlock }) => {
   return (
     <Card
       shadow="sm"
       padding="lg"
       radius="md"
       withBorder
-      style={{ height: "350px", width: "250px" }}
+      style={{ height: "350px", width: "100%" }}
     >
       <Card.Section>
         <Image
@@ -39,6 +41,7 @@ const AdCard = ({ ad }) => {
         <FavoriteButton buttonText={"Favorite"} adId={ad._id} />
         <LikeButton adId={ad._id} />
         <CommentButton adId={ad._id} />
+        {onBlock && <Button onClick={() => onBlock(ad._id)}>Block</Button>}
       </Group>
     </Card>
   );

@@ -1,24 +1,25 @@
+/** @format */
+
+// Import useEffect, useState, and fetch
 import React, { useEffect, useState } from "react";
 import AdCard from "../Card/AdCard";
-import { Container, Title, Divider, TextInput } from "@mantine/core";
-import { UseNavigate, useNavigate } from "react-router-dom";
-import classes from "./UserAdsList.module.css";
+import { Container, Title, Divider, TextInput, Button } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import styles from "./UserAdsList.module.css";
+import EditAdModal from "./EditAdModal";
 
 const UserAdsList = () => {
   const [ads, setAds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [error, setError] = useState(null);
+  const [editingAd, setEditingAd] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserAds = async () => {
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
-      // checkinam ar gauna token, userid
       const userId = user ? user._id : null;
-      console.log("Token:", token);
-      console.log("User id:", userId);
 
       try {
         const response = await fetch(
@@ -29,17 +30,16 @@ const UserAdsList = () => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         );
         if (response.ok) {
           const data = await response.json();
           setAds(data.ads);
         } else {
-          console.error("Failed to fetch user ads", response.StatusText);
+          console.error("Failed to fetch user ads", response.statusText);
         }
       } catch (error) {
         console.error("Error fetching user ads:", error);
-        setError(error.message);
       }
     };
     fetchUserAds();
@@ -49,13 +49,55 @@ const UserAdsList = () => {
     setSearchQuery(query);
   };
 
+  const handleSave = async (updatedAd) => {
+    setAds((prevAds) =>
+      prevAds.map((ad) => (ad._id === updatedAd._id ? updatedAd : ad))
+    );
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/ads/${updatedAd._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedAd),
+        }
+      );
+      if (!response.ok) {
+        console.error("Failed to update ad:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating ad:", error);
+    }
+  };
+
+  const handleEdit = (ad) => {
+    setEditingAd(ad);
+    setShowEditModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowEditModal(false);
+    setEditingAd(null);
+  };
+
+  const handleConfirmEdit = (updatedAd) => {
+    handleSave(updatedAd);
+    handleModalClose();
+  };
+
   const filteredAds = ads.filter((ad) =>
-    ad.description.toLowerCase().includes(searchQuery.toLowerCase()),
+    ad.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <Container fluid>
-      <a className={classes.link} href="" onClick={() => navigate("/")}>
+      <a className={styles.link} href="#" onClick={() => navigate("/")}>
         Home
       </a>
       <Title align="center" mb="lg">
@@ -71,8 +113,10 @@ const UserAdsList = () => {
         {filteredAds.length > 0 ? (
           filteredAds.map((ad) => (
             <div key={ad._id}>
-              {console.log(ad)}
-              <AdCard ad={ad} />
+              <AdCard ad={ad} onSave={handleSave} />
+              <Button onClick={() => handleEdit(ad)} variant="outline">
+                Edit
+              </Button>
             </div>
           ))
         ) : (
@@ -80,6 +124,15 @@ const UserAdsList = () => {
         )}
       </div>
       <Divider className={styles.divider} mt="md" />
+      {showEditModal && editingAd && (
+        <EditAdModal
+          ad={editingAd}
+          onSave={handleSave}
+          onClose={handleModalClose}
+          onConfirmEdit={handleConfirmEdit}
+          showEditModal={showEditModal}
+        />
+      )}
     </Container>
   );
 };
