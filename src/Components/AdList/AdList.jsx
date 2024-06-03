@@ -5,7 +5,7 @@ import AdCard from "../Card/AdCard";
 import { Container, Title, Divider, TextInput } from "@mantine/core";
 import styles from "./AdList.module.css";
 
-const AdsList = () => {
+const AdsList = ({ selectedCategory }) => {
   const [ads, setAds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
@@ -38,9 +38,15 @@ const AdsList = () => {
     setSearchQuery(query);
   };
 
-  const filteredAds = ads.filter((ad) =>
-    ad.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredAds = ads.filter((ad) => {
+    const matchesSearchQuery = ad.description
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory
+      ? String(ad.category_id._id) === String(selectedCategory)
+      : true;
+    return matchesSearchQuery && matchesCategory;
+  });
 
   return (
     <Container fluid>
