@@ -68,7 +68,6 @@ const AdsList = ({ selectedCategory }) => {
           <p>No ads found</p>
         )}
       </div>
-      <Divider className={styles.divider} mt="md" />
     </Container>
   );
 };

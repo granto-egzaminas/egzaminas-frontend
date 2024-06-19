@@ -1,6 +1,9 @@
 .footer {
   border-top: rem(1px) solid
     light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
 
 .inner {
@@ -19,4 +22,8 @@
     margin-top: var(--mantine-spacing-lg);
     margin-bottom: var(--mantine-spacing-sm);
   }
+}
+
+.divider {
+  box-shadow: 0 0 10px rgb(104, 189, 218);
 }

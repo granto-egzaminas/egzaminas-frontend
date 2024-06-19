@@ -6,7 +6,9 @@ export default function FavoriteButton({ buttonText, adId }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    checkIfFavorited();
+    if(localStorage.getItem("user")!=null){
+      checkIfFavorited();
+    }
   }, []);
 
   const checkIfFavorited = async () => {
@@ -34,25 +36,29 @@ export default function FavoriteButton({ buttonText, adId }) {
   const handleFavoriteToggle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:5000/api/favorites/ad/${adId}`,
-        {
-          method: isFavorited ? "DELETE" : "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+      if(token!=null){
+        const response = await fetch(
+          `http://localhost:5000/api/favorites/ad/${adId}`,
+          {
+            method: isFavorited ? "DELETE" : "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      );
-
-      if (response.ok) {
-        setIsFavorited(!isFavorited);
-      } else {
-        console.error(
-          `Failessssd to ${isFavorited ? "unfavorite" : "favorite"} the ad ${
-            response.status
-          }`,
         );
+  
+        if (response.ok) {
+          setIsFavorited(!isFavorited);
+        } else {
+          console.error(
+            `Failessssd to ${isFavorited ? "unfavorite" : "favorite"} the ad ${
+              response.status
+            }`,
+          );
+        }
+      }else{
+        alert("Failed to Favorite ad, user is not logged in")
       }
     } catch (error) {
       console.error(

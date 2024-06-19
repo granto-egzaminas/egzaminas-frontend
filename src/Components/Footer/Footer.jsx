@@ -1,4 +1,4 @@
-import { Anchor, Group, ActionIcon, rem } from "@mantine/core";
+import { Anchor, Group, ActionIcon, rem, Divider } from "@mantine/core";
 import {
   IconBrandTwitter,
   IconBrandYoutube,
@@ -30,6 +30,7 @@ const Footer = () => {
 
   return (
     <div className={classes.footer}>
+      <Divider className={classes.divider} mt="md" />
       <div className={classes.inner}>
         <Group className={classes.links}>{items}</Group>
 

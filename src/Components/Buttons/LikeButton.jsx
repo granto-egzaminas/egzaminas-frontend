@@ -8,7 +8,9 @@ export default function LikeButton({ adId }) {
 
   useEffect(() => {
     fetchLikesCount();
-    checkIfLiked();
+    if(localStorage.getItem("user")!=null){
+      checkIfLiked();
+    }
   }, []);
 
   const fetchLikesCount = async () => {
@@ -52,22 +54,26 @@ export default function LikeButton({ adId }) {
   const handleLikeToggle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:5000/api/likes/ad/${adId}`,
-        {
-          method: isLiked ? "DELETE" : "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+      if(token!=null){
+        const response = await fetch(
+          `http://localhost:5000/api/likes/ad/${adId}`,
+          {
+            method: isLiked ? "DELETE" : "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      );
-
-      if (response.ok) {
-        setLikesCount((prevCount) => prevCount + (isLiked ? -1 : 1));
-        setIsLiked(!isLiked);
-      } else {
-        console.error(`Failed to ${isLiked ? "unlike" : "like"} the ad`);
+        );
+  
+        if (response.ok) {
+          setLikesCount((prevCount) => prevCount + (isLiked ? -1 : 1));
+          setIsLiked(!isLiked);
+        } else {
+          console.error(`Failed to ${isLiked ? "unlike" : "like"} the ad`);
+        }
+      }else{
+        alert("Failed to like ad, user is not logged in")
       }
     } catch (error) {
       console.error(

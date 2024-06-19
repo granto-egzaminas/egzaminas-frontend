@@ -121,7 +121,7 @@ const UserAdsList = () => {
             <p>No ads found</p>
           )}
         </div>
-        <Divider className={styles.divider} mt="md" />
+        {/* <Divider className={styles.divider} mt="md" /> */}
         {showEditModal && editingAd && (
           <EditAdModal
             ad={editingAd}
