@@ -27,6 +27,9 @@ const AdCard = ({ ad, onBlock }) => {
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
+        <Text size="lg">
+          {ad.adname}
+        </Text>
         <Text fw={500}>
           <AiFillDollarCircle /> {ad.price} &#8364;
         </Text>

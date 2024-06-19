@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 const CreateAd = () => {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
+  const [adname, setName] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
@@ -51,7 +52,6 @@ const CreateAd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const token = localStorage.getItem("token");
 
     try {
@@ -66,6 +66,7 @@ const CreateAd = () => {
           price,
           description,
           categoryId,
+          adname
         }),
       });
 
@@ -89,6 +90,12 @@ const CreateAd = () => {
         <Title mt={200}>Create Ad</Title>
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <form onSubmit={handleSubmit}>
+            <TextInput
+              label="Name"
+              value={adname}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
             <TextInput
               label="Image URL"
               value={image}
